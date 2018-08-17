@@ -87,9 +87,13 @@ exports.put = (request, response, next) => {
 };
 
 exports.delete = (request, response, next) => {
-  let id = request.params.id;
-  response.status(200).send({
-    id: id,
-    status: "deleted"
-  });
+  Product.findByIdAndRemove(request.body.id)
+    .then(result => {
+      response.status(200).send({
+        message: "Removido com sucesso"
+      });
+    })
+    .catch(err => {
+      response.status(400).send({ message: "Falha ao remover", data: err });
+    });
 };
