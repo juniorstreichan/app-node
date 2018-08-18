@@ -8,7 +8,7 @@ const app = express();
 
 const router = express.Router();
 
-mongoose.connect('mongodb://@ds119442.mlab.com:19442/produtos?authSource=produtos&w=1');
+mongoose.connect('mongodb://user:senha@ds119442.mlab.com:19442/produtos?authSource=produtos&w=1');
 //#region CARREGAMENTO DOS MODELS
 const Product = require('./models/product');
 //#endregion
