@@ -16,8 +16,11 @@ exports.get = async (request, response, next) => {
     response.status(200).send(data);
   } catch (error) {
     response
-      .status(error.status)
-      .send({ message: "Erro", data: error.message });
+      .status(error.status | 500)
+      .send({
+        message: "Erro",
+        data: error.message
+      });
   }
 };
 
@@ -33,7 +36,10 @@ exports.getByTag = async (request, response, next) => {
   } catch (error) {
     response
       .status(error.status)
-      .send({ message: "Erro", data: error.message });
+      .send({
+        message: "Erro",
+        data: error.message
+      });
   }
 };
 
@@ -49,8 +55,11 @@ exports.getBySlug = async (request, response, next) => {
     response.status(200).send(data);
   } catch (error) {
     response
-      .status(error.status)
-      .send({ message: "Erro", data: error.message });
+      .status(error.status | 500)
+      .send({
+        message: "Erro",
+        data: error.message
+      });
   }
 };
 
@@ -65,8 +74,11 @@ exports.getById = async (request, response, next) => {
     response.status(200).send(data);
   } catch (error) {
     response
-      .status(error.status)
-      .send({ message: "Erro", data: error.message });
+      .status(error.status | 500)
+      .send({
+        message: "Erro",
+        data: error.message
+      });
   }
 };
 
@@ -87,16 +99,14 @@ exports.post = async (request, response, next) => {
     return;
   }
 
-  repo
-    .crate(request.body)
-    .then(result => {
-      response
-        .status(201)
-        .send({ message: "Cadastrado com sucesso", data: result });
-    })
-    .catch(err => {
-      response.status(400).send({ message: "Falha no cadastro", data: err });
-    });
+  return result = await repo.crate(request.body)
+
+  response.status(201).send({
+    message: "Cadastrado com sucesso",
+    data: result
+  });
+
+
 };
 
 /**
@@ -124,7 +134,10 @@ exports.put = async (request, response, next) => {
       });
     })
     .catch(err => {
-      response.status(400).send({ message: "Falha na atualização", data: err });
+      response.status(400).send({
+        message: "Falha na atualização",
+        data: err
+      });
     });
 };
 
@@ -143,7 +156,10 @@ exports.delete = async (request, response, next) => {
       });
     })
     .catch(err => {
-      response.status(400).send({ message: "Falha ao remover", data: err });
+      response.status(400).send({
+        message: "Falha ao remover",
+        data: err
+      });
     });
 };
 
