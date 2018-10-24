@@ -12,7 +12,13 @@ const repo = require("../repository/product.repository");
 exports.get = async (request, response, next) => {
   try {
     const data = await repo.find();
-    response.status(200).send(data);
+    if (data !== null) {
+      response.status(200).send(data);
+
+    } else {
+      response.status(404).send(data);
+
+    }
   } catch (error) {
     response
       .status(error.status | 500)
@@ -31,7 +37,13 @@ exports.get = async (request, response, next) => {
 exports.getByTag = async (request, response, next) => {
   try {
     const data = await repo.findByTag(request.params.tag);
-    response.status(200).send(data);
+    if (data !== null) {
+      response.status(200).send(data);
+
+    } else {
+      response.status(404).send(data);
+
+    }
   } catch (error) {
     response
       .status(error.status)
@@ -51,7 +63,15 @@ exports.getByTag = async (request, response, next) => {
 exports.getBySlug = async (request, response, next) => {
   try {
     const data = await repo.findBySlug(request.params.slug);
-    response.status(200).send(data);
+
+
+    if (data !== null) {
+      response.status(200).send(data);
+
+    } else {
+      response.status(404).send(data);
+
+    }
   } catch (error) {
     response
       .status(error.status | 500)
@@ -70,7 +90,14 @@ exports.getBySlug = async (request, response, next) => {
 exports.getById = async (request, response, next) => {
   try {
     const data = await repo.findById(request.params.id);
-    response.status(200).send(data);
+
+    if (data !== null) {
+      response.status(200).send(data);
+
+    } else {
+      response.status(404).send(data);
+
+    }
   } catch (error) {
     response
       .status(error.status | 500)
@@ -98,12 +125,16 @@ exports.post = async (request, response, next) => {
     return;
   }
 
-  return result = await repo.crate(request.body)
+  const result = await repo.crate(request.body)
 
+if (result !==null) {
   response.status(201).send({
     message: "Cadastrado com sucesso",
     data: result
   });
+} else {
+  response.status(404).send(null);
+}
 
 
 };

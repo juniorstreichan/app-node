@@ -11,6 +11,8 @@ const router = express.Router();
 mongoose.connect(`mongodb://${APP_CONFIG.dbUser}:${APP_CONFIG.dbPassword}@ds119442.mlab.com:19442/produtos?authSource=produtos&w=1`);
 //#region CARREGAMENTO DOS MODELS
 const Product = require('./models/product');
+const Customer = require('./models/customer');
+const Order = require('./models/order');
 //#endregion
 
 //#region CARREGAMENTO DAS ROTAS
