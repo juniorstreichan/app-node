@@ -3,7 +3,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-const {APP_CONFIG} = require('./config');
+const {APP_CONFIG} = require('../config');
 const app = express();
 
 const router = express.Router();
