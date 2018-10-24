@@ -5,7 +5,6 @@ const ValidationContract = require("./../validators/fluent-validator");
 const repo = require("../repository/product.repository");
 
 /**
- *
  * @param {*} request
  * @param {*} response
  * @param {*} next
