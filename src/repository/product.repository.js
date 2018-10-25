@@ -1,10 +1,10 @@
-"use strict";
+'use strict';
 
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
-const Product = mongoose.model("Product");
+const Product = mongoose.model('Product');
 
-exports.find = async (labels = "title price slug tags") => {
+exports.find = async (labels = 'title price slug tags') => {
   const result = await Product.find({
     active: true
   }, labels);
@@ -12,7 +12,7 @@ exports.find = async (labels = "title price slug tags") => {
 };
 
 
-exports.findBySlug = async (slug, labels = "") => {
+exports.findBySlug = async (slug, labels = '') => {
   const result = await Product.findOne({
       slug: slug,
       active: true
@@ -24,7 +24,7 @@ exports.findBySlug = async (slug, labels = "") => {
 
 
 
-exports.findByTag = async (tag, labels = "") => {
+exports.findByTag = async (tag, labels = '') => {
   const result = Product.find({
       tags: tag,
       active: true
@@ -34,7 +34,7 @@ exports.findByTag = async (tag, labels = "") => {
   return result;
 };
 
-exports.findById = async (id, labels = "") => {
+exports.findById = async (id, labels = '') => {
   const result = await Product.findById(id, labels);
   return result;
 };

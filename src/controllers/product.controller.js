@@ -1,8 +1,8 @@
-"use strict";
+'use strict';
 
-const ValidationContract = require("./../validators/fluent-validator");
+const ValidationContract = require('./../validators/fluent-validator');
 
-const repo = require("../repository/product.repository");
+const repo = require('../repository/product.repository');
 
 /**
  * @param {*} request
@@ -23,7 +23,7 @@ exports.get = async (request, response, next) => {
     response
       .status(error.status | 500)
       .send({
-        message: "Erro",
+        message: 'Erro',
         data: error.message
       });
   }
@@ -48,7 +48,7 @@ exports.getByTag = async (request, response, next) => {
     response
       .status(error.status)
       .send({
-        message: "Erro",
+        message: 'Erro',
         data: error.message
       });
   }
@@ -76,7 +76,7 @@ exports.getBySlug = async (request, response, next) => {
     response
       .status(error.status | 500)
       .send({
-        message: "Erro",
+        message: 'Erro',
         data: error.message
       });
   }
@@ -102,7 +102,7 @@ exports.getById = async (request, response, next) => {
     response
       .status(error.status | 500)
       .send({
-        message: "Erro",
+        message: 'Erro',
         data: error.message
       });
   }
@@ -129,7 +129,7 @@ exports.post = async (request, response, next) => {
 
 if (result !==null) {
   response.status(201).send({
-    message: "Cadastrado com sucesso",
+    message: 'Cadastrado com sucesso',
     data: result
   });
 } else {
@@ -160,12 +160,12 @@ exports.put = async (request, response, next) => {
     .update(request.params.id, request.body)
     .then(result => {
       response.status(200).send({
-        message: "Atualizado com sucesso"
+        message: 'Atualizado com sucesso'
       });
     })
     .catch(err => {
       response.status(400).send({
-        message: "Falha na atualização",
+        message: 'Falha na atualização',
         data: err
       });
     });
@@ -182,12 +182,12 @@ exports.delete = async (request, response, next) => {
     .delete(request.body.id)
     .then(result => {
       response.status(200).send({
-        message: "Removido com sucesso"
+        message: 'Removido com sucesso'
       });
     })
     .catch(err => {
       response.status(400).send({
-        message: "Falha ao remover",
+        message: 'Falha ao remover',
         data: err
       });
     });
@@ -199,16 +199,16 @@ function validarProduto(body) {
   contract.hasMinLen(
     body.title,
     3,
-    "title# O titulo deve ter pelo menos 3 caracteres"
+    'title# O titulo deve ter pelo menos 3 caracteres'
   );
 
   contract.hasMinLen(
     body.description,
     3,
-    "description# A descrição deve ter pelo menos 3 caracteres"
+    'description# A descrição deve ter pelo menos 3 caracteres'
   );
 
-  contract.isNegativeOrZero(body.price, "price# O valor deve ser positivo");
+  contract.isNegativeOrZero(body.price, 'price# O valor deve ser positivo');
 
   return contract;
 }
