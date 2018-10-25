@@ -125,16 +125,16 @@ exports.post = async (request, response, next) => {
     return;
   }
 
-  const result = await repo.crate(request.body)
+  const result = await repo.create(request.body)
 
-if (result !==null) {
-  response.status(201).send({
-    message: 'Cadastrado com sucesso',
-    data: result
-  });
-} else {
-  response.status(404).send(null);
-}
+  if (result !== null) {
+    response.status(201).send({
+      message: 'Cadastrado com sucesso',
+      data: result
+    });
+  } else {
+    response.status(404).send(null);
+  }
 
 
 };

@@ -39,7 +39,7 @@ exports.findById = async (id, labels = '') => {
   return result;
 };
 
-exports.crate = async data => {
+exports.create = async data => {
   let product = new Product(data);
   const result = await product.save();
   return result;
