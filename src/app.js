@@ -3,12 +3,12 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const {APP_CONFIG} = require('../config');
+const config = require('../config');
 const app = express();
 
 const router = express.Router();
 
-mongoose.connect(`mongodb://${APP_CONFIG.dbUser}:${APP_CONFIG.dbPassword}@ds119442.mlab.com:19442/produtos?authSource=produtos&w=1`);
+mongoose.connect(config.connectionString);
 //#region CARREGAMENTO DOS MODELS
 const Product = require('./models/product').default;
 const Customer = require('./models/customer').default;
