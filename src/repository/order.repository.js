@@ -13,5 +13,5 @@ exports.find = async ()=>{
 
 exports.create = async (data)=>{
     const order = new Order(data);
-    await order.save();
+    await order.save(err => { if (err) return new Error(`Erro ${err}`) });
 }
